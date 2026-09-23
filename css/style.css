@@ -83,20 +83,18 @@ button{
   color: white;
 }
 .weather-details{
-  display: none;
+  display: inline;
 }
-.temperature{
-  display: flex;
-  justify-content: center;
+img{
+  display: block;
   text-align: center;
+  width: 20%;
+  margin: 0 auto;
 }
-.material-symbols-outlined{
-  display: flex;
-  justify-content: center;
-}
+
 .switch{
   display: flex;
-  width: 10%;
+  width: 15%;
   margin: 0 auto;
   justify-content: center;
   padding: 4px;

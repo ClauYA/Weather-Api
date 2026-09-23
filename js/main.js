@@ -18,6 +18,8 @@ function getWeather()
             if(obtenerCiudad!==''){
                 console.log(data)
                 console.log(data.current.condition.text)
+                let httpIcon=`http:${data.current.condition.icon}`;
+                console.log(httpIcon)
                 document.querySelector(".weather-details").style.display="block";
                 document.getElementById('name').innerText=data.location.name;
                 document.getElementById('country').innerText=data.location.country;
@@ -25,7 +27,7 @@ function getWeather()
                         // <h3>${data.current.temp_f}</h3>`;
                 document.getElementById('temp').innerText=`${data.current.temp_f}`;
                 document.getElementById('condition').innerText=`${data.current.condition.text}`;
-
+                document.getElementById('temp-icon').src=httpIcon;
                 document.getElementById('dato1').innerText=`${data.current.humidity} %`;
                 document.getElementById('dato2').innerText=`${data.current.wind_kph} Km/h`;
                 document.getElementById('dato3').innerText=`${data.current.vis_km} Km`;
