@@ -6,7 +6,7 @@ document.getElementById("search").onclick=getWeather;
 function getWeather()
 {
     let obtenerCiudad=document.getElementById('city').value
-    let obtenerPais=document.getElementById('country').value
+    let obtenerPais=document.getElementById('input-country').value
     console.log(obtenerCiudad)
     
    
@@ -15,7 +15,7 @@ function getWeather()
         .then((res) => res.json()) // parse response as JSON
          //object
         .then((data) => {
-            if(obtenerCiudad!==''){
+            if(obtenerCiudad!=='' || obtenerPais!==''){
                 console.log(data)
                 console.log(data.current.condition.text)
                 let httpIcon=`http:${data.current.condition.icon}`;
@@ -34,7 +34,7 @@ function getWeather()
                 document.getElementById('dato4').innerText=`${data.current.feelslike_f} °`;
 
             }else{
-                alert('Please add a City')
+                alert('Please add a City and country')
             }
             
               
