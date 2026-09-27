@@ -5,17 +5,24 @@ document.getElementById("search").onclick=getWeather;
 
 function getWeather()
 {
-    let obtenerCiudad=document.getElementById('city').value
-    let obtenerPais=document.getElementById('input-country').value
-    console.log(obtenerCiudad)
-    
+    let bCiudad=document.getElementById('city').value
+    let obtenerCiudad=capitalFirstLetter(bCiudad)
+    let obPais=document.getElementById('input-country').value
+    let obtenerPais=capitalFirstLetter(obPais)
    
-    const url=`http://api.weatherapi.com/v1/current.json?key=2abd921c3ecf4dfa854152735262209&q=${obtenerCiudad}}&aqi=no`
+    console.log(obtenerCiudad)
+     console.log(obtenerPais)
+   
+    const url=`http://api.weatherapi.com/v1/current.json?key=2abd921c3ecf4dfa854152735262209&q=${obtenerCiudad},${obtenerPais}&aqi=no`
     fetch(url)
         .then((res) => res.json()) // parse response as JSON
          //object
         .then((data) => {
-            if(obtenerCiudad!=='' || obtenerPais!==''){
+            if(obtenerCiudad=='' && obtenerPais==''){
+                alert('Please add a City and country')
+                return
+            }else if(obtenerCiudad == data.location.name || obtenerPais == data.location.country){
+                
                 console.log(data)
                 console.log(data.current.condition.text)
                 let httpIcon=`http:${data.current.condition.icon}`;
@@ -32,9 +39,8 @@ function getWeather()
                 document.getElementById('dato2').innerText=`${data.current.wind_kph} Km/h`;
                 document.getElementById('dato3').innerText=`${data.current.vis_km} Km`;
                 document.getElementById('dato4').innerText=`${data.current.feelslike_f} °`;
-
             }else{
-                alert('Please add a City and country')
+                alert("We don't find the city or country you insert")
             }
             
               
@@ -45,7 +51,8 @@ function getWeather()
         console.log(`error ${err}`)
     });
 }
-function change()
+function capitalFirstLetter(word)
 {
-
+    if(!word) return ''; 
+       return (word.charAt(0).toUpperCase()+word.slice(1));
 }
